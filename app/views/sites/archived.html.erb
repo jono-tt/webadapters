@@ -1,0 +1,33 @@
+<% content_for :sidebar do %>
+
+  <h3>Site</h3>
+  <ul class="nav nav-list">
+    <li><%= link_to "Active Sites", sites_path %></li>
+    <li></li>
+  </ul>
+
+<% end %>
+
+<div class="well">
+  <h1>Archived Sites</h1>
+</div>
+
+<% @sites.each_slice(3) do |row| %>
+  <div class="row-fluid">
+    <% row.each do |site| %>
+      <div class="span4">
+        <div class="well tile">
+          <%= link_to site do %>
+            <h2><%= site.name %></h2>
+            <span>
+              <%= link_to "unarchive", unarchive_site_path(site), :method => :put %>
+            </span>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+
+<%= paginate @sites %>

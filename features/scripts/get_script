@@ -1,0 +1,5 @@
+page = get("http://google.com/")
+
+title = page.search("title").first.text
+
+result "Title is: #{title}"

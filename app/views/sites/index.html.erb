@@ -1,0 +1,41 @@
+<% content_for :sidebar do %>
+
+  <h3>Site</h3>
+  <ul class="nav nav-list">
+    <li>
+      <%= link_to "Add New Site", new_site_path %>
+    </li>
+    <li>
+      <%= link_to "Archived Sites", archived_sites_path %>
+    </li>
+  </ul>
+
+<% end %>
+
+<% content_for :title, "sites" %>
+
+<ul class="tiled">
+  <% @sites.each do |site| %>
+    <li>
+      <div>
+        <%= link_to site do %>
+          <h2><%= site.name %></h2>
+        <% end %>
+        <div class="extra-actions">
+          <%= link_to "archive", archive_site_path(site), :confirm => "Are you sure you want to archive this site ?", :method => :put %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+
+  <li class="add">
+    <div>
+      <%= link_to new_site_path do %>
+        <h2>Add a site</h2>
+      <% end %>
+    </div>
+  </li>
+</ul>
+
+
+<%= paginate @sites %>

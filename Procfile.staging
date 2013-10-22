@@ -1,0 +1,2 @@
+resque: RAILS_ENV=staging bundle exec rake environment resque:work QUEUE=*
+resque_web: RAILS_ENV=staging bundle exec resque-web -FL

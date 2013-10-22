@@ -1,0 +1,33 @@
+<% content_for :title, "alarms" %>
+
+<% if @alarms.empty? %>
+  <h2>No alarms. Hooray!</h2>
+<% end %>
+
+<ul class="primary-content">
+  <% @alarms.each do |alarm| %>
+    <li> 
+      <%= link_to alarm do %>
+        <% unless params[:site_id] %>
+          <h3><%= alarm.site.name %> : <%= alarm.api_method.name %></h3>
+        <% end %>
+        <h2><%= alarm.message %></h2>
+        <% if alarm.count && alarm.count > 1 -%>
+          <h3>Raised <%= alarm.count %> times</h3>
+        <% end -%>
+        <p>
+          <% if alarm.count && alarm.count > 1 -%>
+            First raised
+          <% else -%>
+            Raised
+          <% end -%>
+          <%= distance_of_time_in_words_to_now(alarm.created_at) %> ago.
+          (<%= alarm.created_at %>)
+        </p>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+
+<%= paginate @alarms %>

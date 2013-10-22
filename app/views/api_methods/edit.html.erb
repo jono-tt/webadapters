@@ -1,0 +1,15 @@
+<% content_for :title, "Edit" %>
+
+  <%= form_for [@site, @api_method], :html => {:class => "form-horizontal script-form"}  do |form| %>
+
+    <fieldset>
+      <%= render :partial => "shared/errors", locals: { object: @api_method} %>
+      <%= render form %>
+
+      <div class="form-actions">
+        <button type="submit" class="btn">Save</button>
+      </div>
+
+    </fieldset>
+
+  <% end %>

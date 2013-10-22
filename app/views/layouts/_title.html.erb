@@ -1,0 +1,13 @@
+<h1>
+  <% if @site && ! @site.new_record? %>
+    <%= link_to "sites", sites_path %> &raquo;
+    <%= link_to @site.name, @site %> &raquo;
+  <% end %>
+  <% if @api_method && ! @api_method.new_record? && url_for([@site, @api_method]) != request.fullpath %>
+    <%= link_to @api_method.name, [@site, @api_method] %> &raquo;
+  <% end %>
+  <span class="title">
+    <%= yield :title %>
+    //
+  </span>
+</h1>

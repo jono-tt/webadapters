@@ -1,0 +1,41 @@
+<% content_for :title, "Users" %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+    <tr>
+      <td><%= user.email %></td>
+      <td>
+        <% if user.enabled? %>
+          <span class="label label-success">Enabled</span>
+        <% else %>
+          <span class="label">Disabled</span>
+        <% end %>
+      </td>
+      <td>
+      <% if user.enabled? %>
+        <%= link_to "Disable", disable_user_path(user), :method => :put %>
+      <% else %>
+        <%= link_to "Enable", enable_user_path(user), :method => :put %>
+      <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<ul class="primary-content">
+  <li class="add">
+    <%= link_to "add a user", new_user_path %>
+  </li>
+</ul>
+
+<%= paginate @users %>

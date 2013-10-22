@@ -1,0 +1,10 @@
+<% content_for :title, "api methods" %>
+
+<ul class="primary-content">
+  <% @site.api_methods.each do |api_method| %>
+    <li> <%= link_to api_method.name, [@site, api_method] %>
+  <% end %>
+  <li class="add">
+    <%= link_to "add an api method", new_site_api_method_path(@site) %>
+  </li>
+</ul>

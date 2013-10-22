@@ -1,0 +1,8 @@
+# Fetch the page from the remote site
+page = get "http://velti.com/"
+
+# Extract some data from the page
+title = page.search("title").first.text
+
+# Return the data
+result title

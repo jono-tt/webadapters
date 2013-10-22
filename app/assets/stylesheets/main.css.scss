@@ -1,0 +1,108 @@
+@import "colors";
+
+body.ide {
+  padding-top: 20px;
+}
+
+#panel-branding {
+  background: $light-blue;
+  position: fixed;
+  margin-left: 61.77%;
+  width: 38.22%;
+  height: 100%;
+  padding-top: 65px;
+  z-index: 100;
+}
+
+#panel-main {
+  display: relative;
+  width: 57.77%;
+  padding-left: 2%;
+  padding-top: 20px;
+}
+
+#product-logo {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 4.5em;
+  text-align: center;
+  letter-spacing: 3px;
+
+  a { color: #fff; }
+  a:hover { text-decoration: none; }
+}
+
+#brand-logo {
+  text-align: center;
+  margin-bottom: 5%;
+}
+
+h1 { 
+  text-transform: lowercase;
+  font-variant: small-caps;
+  color: $light-blue; 
+  font-size: 3em;
+  margin-bottom: 1em;
+  letter-spacing: 1px;
+
+  span.title {
+    text-transform: uppercase;
+  }
+
+  a, a:hover {
+    color: $light-blue;
+  }
+}
+
+#login {
+  position: absolute;
+  top: 2px;
+  right: 15px;
+  z-index: 1000;
+
+  ul {
+    list-style: none;
+
+    a.dropdown-toggle {
+      color: white;
+    }
+  }
+
+  .caret-white {
+    border-top-color: white !important;
+    border-bottom-color: white !important;
+  }
+}
+
+#copyright {
+  margin-top: 2.5em;
+  padding-right: 15px;
+  color: white;
+  text-align: right;
+}
+
+footer {
+  margin-top: 1em;
+  border-top: 1px solid $light-grey;
+  padding-left: 15px;
+
+  .branding {
+    float: left;
+  }
+  #brand-logo {
+    text-align: left;
+    width: 264px;
+    height: 76px;
+  }
+  #product-logo {
+    font-size: 2.3em;
+    text-align: left;
+    clear: left;
+    a { color: $dark-blue; }
+    padding-left: 8px;
+  }
+  #copyright {
+    color: #999;
+    float: right;
+  }
+}

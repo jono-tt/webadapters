@@ -1,0 +1,4 @@
+numerical_symbols = (1 + 2) * 2
+url_symbols = true && nil.nil?
+
+result "Testing #{numerical_symbols} symbols, including £ and ł: #{url_symbols}"

@@ -1,0 +1,13 @@
+<% content ||= version.script %>
+<% id ||= "script" %>
+
+<pre id="<%= id %>">
+<%= content %>
+</pre>
+
+<% unless version.current? %>
+  <%= button_to "Restore this version", 
+    restore_site_api_method_version_path(@site, @api_method, version.version), 
+    :method => :put, 
+    :confirm => "This will replace the latest version of the script. If you need to change your mind after restoring this script the all of the versions will still be accessible.\n\nDo you want to continue with the restore?" %>
+<% end %>

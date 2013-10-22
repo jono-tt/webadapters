@@ -1,0 +1,12 @@
+<% content_for :title, "New Api Method" %>
+
+<%= form_for [@site, @api_method], :html => {:class => "form-horizontal"}  do |form| %>
+  <fieldset>
+    <%= render :partial => "shared/errors", locals: { object: @api_method} %>
+    <%= render form %>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Create!</button>
+    </div>
+  </fieldset>
+<% end %>

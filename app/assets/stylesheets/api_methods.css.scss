@@ -1,0 +1,71 @@
+#api_method_script{
+  display: none;
+}
+
+#editor{
+  width: 47.7%;
+  height: 600px;
+}
+
+#area-wrapper{
+  height: 600px;
+}
+
+#draft {
+  .draft-actions {
+    margin-top: 2em;
+  }
+
+  .btn {
+    margin-right: 5px;
+  }
+}
+
+.form-actions.script-actions {
+  margin-top: 0;
+}
+
+.loading {
+  color: #aaa;
+  opacity: 0.7;
+}
+
+.call-url{
+  width: 100%;
+}
+
+.script-error {
+  background-color: #fdd;
+}
+
+.script-warning {
+  background-color: #fa7;
+  color: #000;
+}
+
+#debug {
+  li{
+    padding-bottom: 10px;
+  }
+}
+
+#save-prompt {
+  display: none;
+}
+
+#save-script-controls {
+  display: none;
+}
+
+#commit-message {
+  width: 100%;
+  margin-top: 1em;
+}
+
+.script-actions {
+  margin-bottom: 1em;
+}
+
+#params {
+  width: 50%;
+}

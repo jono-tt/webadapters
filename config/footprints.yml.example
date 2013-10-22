@@ -1,0 +1,16 @@
+footprints_uat: &uat
+  ws_host: localhost
+  project_id: 12
+
+test:
+  <<: *uat
+  username: footprints.user
+  password: footprints.password
+  alarm_host: test.webadapter2
+
+development:
+  <<: *uat
+  username: webadapter
+  password: webscrape
+  alarm_host: localhost:3000
+

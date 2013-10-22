@@ -1,0 +1,15 @@
+<% content_for :title, "New site" %>
+
+<%= form_for @site, :url => sites_path, :html => {:class => "form-horizontal"}  do |form| %>
+
+  <fieldset>
+    <%= render :partial => "shared/errors", locals: { object: @site} %>    
+    <%= render :partial => "sites/form", locals: { form: form} %>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Create!</button>
+    </div>
+
+  </fieldset>
+
+<% end %>

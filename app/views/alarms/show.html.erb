@@ -1,0 +1,38 @@
+<% content_for :title, "Alarm" %>
+<div class="row-fluid">
+  <%= render :partial => "layouts/title" %>
+</div>
+
+<div class="well">
+  <h1><%= @alarm.message %></h1>
+  <% if @alarm.count && @alarm.count > 1 -%>
+    <h2>Raised <%= @alarm.count %> times</h2>
+  <% end -%>
+</div>
+
+<p>
+  Alarm raised <%= distance_of_time_in_words_to_now(@alarm.created_at) %> ago
+  (<%= @alarm.created_at %>)
+</p>
+
+<% @alarm.parsed_responses.each do |response| %>
+  <div class="row-fluid">
+    <div class="span12">
+      <h3><%= response["request_method"] %> <%= response["request_url"] %></h3>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span6">
+      <h4>Response when alarm was raised</h4>
+      <pre><code><%= response["alarm_response"] %></code></pre>
+    </div>
+    <div class="span6">
+      <% if response["last_good_response"] %>
+        <h4>Diff from last good response</h4>
+        <pre><%= diff(response["last_good_response"], response["alarm_response"]).html_safe %></pre>
+      <% else %>
+        <h4>No last good response to show</h4>
+      <% end %>
+    </div>
+  </div>
+<% end %>

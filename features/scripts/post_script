@@ -1,0 +1,5 @@
+page = post("http://google.com/", { "email" => "user@some.domain", "password" => "top secret password" })
+
+title = page.search("title").first.text
+
+result "Title is: #{title}"

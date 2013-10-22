@@ -1,0 +1,11 @@
+<div class="version-metadata well">
+  <p class="creation">
+    Created <%= version.created_at %> 
+    (<%= distance_of_time_in_words_to_now(version.created_at) %>)
+    by <%= version.user.email %>
+  </p>
+
+  <div class="message"><%= simple_format(version.message) %></div>
+</div>
+
+

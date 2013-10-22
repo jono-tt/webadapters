@@ -1,0 +1,140 @@
+<% content_for :title, @api_method.name %>
+
+<div class="row-fluid">
+  <div class="span6">
+    <div class="well">
+      <%= render "layouts/title" %>
+      <input value="<%= site_api_method_call_url(@site, :name => @api_method.name) %>" readonly="readonly" class="call-url"></input>
+    </div>
+  </div>
+  <div class="span6">
+    <p class="object-actions">
+      <%= link_to [:edit, @site, @api_method], :class => "btn btn-small" do %>
+      Edit
+      <% end %>
+
+      <%= link_to [@site, @api_method], :method => :delete, :confirm => "Are you sure you want to delete this Api Method? There is no way to recover it.", :class => "btn btn-small" do %>
+      Delete
+      <% end %>
+    </p>
+
+    <ul>
+      <li><%= link_to "Versions", site_api_method_version_path(@site, @api_method, :latest) %></li>
+      <li><%= link_to pluralize(@api_method.alarms.count, "alarm"), site_api_method_alarms_path(@site, @api_method) %></li>
+    </ul>
+  </div>
+</div>
+
+
+<% if @api_method.draft? %>
+<div id="draft">
+  <div class="row-fluid hero-unit">
+    <div class="span6">
+      <p>
+        There is a draft copy of this script which is different from the latest saved copy. This gets created when you click 'Run' but leave the page without clicking 'Save'.
+      </p>
+      <p>
+        What do you want to do with the draft?
+      </p>
+      <div class="draft-actions">
+        <button id="restore" class="btn btn-success">
+          Restore draft
+        </button>
+        <button id="discard" class="btn btn-danger" data-url="<%= site_api_method_url(@site, @api_method) %>">
+          Discard draft
+        </button>
+        <div id="content" class="well hidden">
+          <%= @api_method.draft %>
+        </div>
+        <div id="diff" class="well hidden">
+          <%= @api_method.draft_diff.html_safe %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span6">
+      <h3>Latest saved copy</h3>
+    </div>
+    <div class="span6">
+      <h3>Draft copy</h3>
+    </div>
+  </div>
+</div>
+<% end %>
+
+
+
+<div class="row-fluid">
+  <div class="span6">
+    <%= form_for [@site, @api_method], :html => {:class => "form-horizontal script-form"}  do |form| %>
+
+    <%= hidden_field_tag "message" %>
+
+    <fieldset>
+      <%= render :partial => "api_methods/ide", locals: { form: form, api_method: @api_method } %>
+    </fieldset>
+
+    <% end %>
+  </div>
+
+  <div class="span6">
+    <div id="save-prompt" class="alert alert-info">
+      The script has unsaved changes.
+    </div>
+
+    <div class="script-actions">
+      <div id="run-script-controls">
+        <input id="params" placeholder="params">
+
+        <button id="run-script" class="btn btn-primary" data-url="<%= site_api_method_call_url(@site, :name => @api_method.name)%>">Run</button>
+        <button id="start-save-script" type="submit" class="btn">Save</button>
+      </div>
+
+      <div id="save-script-controls" class="alert">
+        <h4>Enter a description of what you changed in this version of the script</h4>
+        <textarea id="commit-message"></textarea>
+        <button id="save-script" class="btn btn-primary">Save</button>
+        or
+        <a href="#" id="cancel-save">cancel</a>
+      </div>
+
+      <ul id="tabbed-results" class="nav nav-tabs">
+        <li class="active">
+          <a data-tab="#tab-results" href="#result">Result</a>
+        </li>
+        <li>
+          <a data-tab="#tab-debug" href="#debug">Debug</a>
+        </li>
+        <li>
+          <a data-tab="#tab-stats" href="#stats">Stats</a>
+        </li>
+      </ul>
+    </div>
+
+    <div id="spinner" style="padding-top: 10px"></div>
+
+    <div id="tab-results" class="well tabs-data">
+      <pre id="result"/>
+    </div>
+
+    <div id="tab-debug" class="well tabs-data">
+      <h3>Debug</h3>
+      <pre>
+        <ul id="debug" class="unstyled">
+        </ul>
+      </pre>
+    </div>
+
+    <div id="tab-stats" class="well tabs-data">
+      <h3>Stats</h3>
+      <pre>
+        <ul id="stats" class="unstyled">
+        </ul>
+      </pre>
+    </div>
+
+  </div>
+
+</div> <!-- row-fluid -->
+
